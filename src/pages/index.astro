@@ -1,9 +1,18 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+
+const collection = await getCollection('about');
 ---
 
 <Layout pageName="Home">
   <section>
+    {
+      collection.map(async (entry) => {
+        const { Content } = await entry.render();
+        return <Content></Content>;
+      })
+    }
   </section>
 </Layout>
 <style>
