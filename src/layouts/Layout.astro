@@ -22,7 +22,7 @@ const { pageName } = Astro.props;
   <body>
     <Header></Header>
     <main>
-      <slot />
+      <slot></slot>
     </main>
     <Footer></Footer>
   </body>
@@ -55,6 +55,9 @@ const { pageName } = Astro.props;
       monospace;
   }  
   body {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
     margin: auto;
     padding: 1rem;
     width: 800px;
