@@ -3,10 +3,10 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 interface Props {
-  title: string;
+  pageName: string;
 }
 
-const { title } = Astro.props;
+const { pageName } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,12 +17,12 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>Kevin Huynh - {pageName}</title>
   </head>
   <body>
     <Header></Header>
     <main>
-      <slot />
+      <slot></slot>
     </main>
     <Footer></Footer>
   </body>
@@ -53,5 +53,16 @@ const { title } = Astro.props;
       Bitstream Vera Sans Mono,
       Courier New,
       monospace;
+  }  
+  body {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    line-height: 1.6;
   }
 </style>
