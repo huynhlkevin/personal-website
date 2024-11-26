@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 
 const collection = await getCollection('about');
 ---
@@ -10,13 +11,19 @@ const collection = await getCollection('about');
     {
       collection.sort((a, b) => a.data.sortOrder - b.data.sortOrder).map(async (entry) => {
         const { Content } = await entry.render();
-        return <section>
-          <h2>{entry.data.title}</h2>
-          <Content></Content>
-        </section>
+        return (
+          <Card title={entry.data.title}>
+            <Content></Content>
+          </Card>
+        )
       })
     }
   </section>
 </Layout>
 <style>
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
 </style>
