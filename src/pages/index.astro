@@ -8,9 +8,12 @@ const collection = await getCollection('about');
 <Layout pageName="Home">
   <section>
     {
-      collection.map(async (entry) => {
+      collection.sort((a, b) => a.data.sortOrder - b.data.sortOrder).map(async (entry) => {
         const { Content } = await entry.render();
-        return <Content></Content>;
+        return <section>
+          <h2>{entry.data.title}</h2>
+          <Content></Content>
+        </section>
       })
     }
   </section>
