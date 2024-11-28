@@ -29,10 +29,18 @@ test("check visitor counter increment", async ({ page }) => {
 });
 
 async function getResponse(): Promise<Response> {
-  return await fetch("https://f36g81unmd.execute-api.us-west-1.amazonaws.com/visit/", { method: "POST" });
+  return await fetch(
+    "https://f36g81unmd.execute-api.us-west-1.amazonaws.com/visit/", 
+    { 
+      method: "POST",
+      headers: {
+        "x-api-key": "ovAG1tOEin4Y9eYBDVKQz3UzP2AzGvv02UFehNIY"
+      }
+    }
+  );
 }
 
 async function getVisitorCounterValue(): Promise<number> {
-  const response = await fetch("https://f36g81unmd.execute-api.us-west-1.amazonaws.com/visit/", { method: "POST" });
+  const response = await getResponse();
   return (await response.json())["data"];
 }
