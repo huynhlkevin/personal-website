@@ -32,4 +32,4 @@ jobs:
         role-to-assume: arn:aws:iam::864899855377:role/S3BucketAccess
         aws-region: ${{ env.AWS_REGION }}
     - name: Upload Files
-      run: aws s3 cp ./dist/index.html s3://${{ env.BUCKET_NAME }}
+      run: aws s3 cp ./dist s3://${{ env.BUCKET_NAME }}
