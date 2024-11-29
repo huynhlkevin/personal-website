@@ -31,5 +31,7 @@ jobs:
       with:
         role-to-assume: arn:aws:iam::864899855377:role/S3BucketAccess
         aws-region: ${{ env.AWS_REGION }}
+    - name: Empty Bucket
+      run: aws s3 rm s3://${{ env.BUCKET_NAME }} --recursive
     - name: Upload Files
-      run: aws s3 cp ./dist s3://${{ env.BUCKET_NAME }}
+      run: aws s3 cp ./dist s3://${{ env.BUCKET_NAME }} --recursive
