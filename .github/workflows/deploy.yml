@@ -9,28 +9,27 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  BUCKET_NAME: "huynhlkevin.com"
+  AWS_REGION: "us-west-1"
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Node
+      uses: actions/setup-node@v4
       with:
         node-version: 22
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-  upload-to-bucket:
-    runs-on: ubuntu-latest
-    needs: [build]
-    env:
-      BUCKET_NAME: "huynhlkevin.com"
-      AWS_REGION: "us-west-1"
-    steps:
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::864899855377:role/S3BucketAccess
-          aws-region: ${{ env.AWS_REGION }}
-      - name: Upload Files
-        run: aws s3 cp ./dist/index.html s3://${{ env.BUCKET_NAME }}
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::864899855377:role/S3BucketAccess
+        aws-region: ${{ env.AWS_REGION }}
+    - name: Upload Files
+      run: aws s3 cp ./dist/index.html s3://${{ env.BUCKET_NAME }}
