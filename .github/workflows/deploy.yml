@@ -28,7 +28,7 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: arn:aws:iam::864899855377:role/S3BucketAccess
+        role-to-assume: arn:aws:iam::864899855377:role/FrontendAutomation
         aws-region: ${{ env.AWS_REGION }}
     - name: Sync Files
       run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }} --delete
