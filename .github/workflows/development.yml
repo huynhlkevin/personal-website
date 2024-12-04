@@ -4,8 +4,16 @@ on:
   pull_request:
 
 jobs:
+  development:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - name: Deploying to development environment
+        run: echo "Deploying to development environment"
+
   deploy_development_infrastructure:
     uses: huynhlkevin/personal-website-infrastructure/.github/workflows/deploy_development_infrastructure.yml@main
+    needs: [development]
     secrets: inherit
 
   deploy_website_content:
