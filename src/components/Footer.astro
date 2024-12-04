@@ -13,13 +13,13 @@
   }
 </style>
 <script>
+import { REST_API_ENDPOINT, REST_API_KEY } from "astro:env/client";
+
   const response = await fetch(
-    "https://obpih414if.execute-api.us-west-1.amazonaws.com/novel-bat",
+    REST_API_ENDPOINT,
     { 
       method: "POST",
-      headers: {
-        "x-api-key": "v1n0wPJ0dM5dvZgETT4Zh12Kntui0zqO54pS1DuY" // gitleaks:allow
-      }
+      headers: { "x-api-key": REST_API_KEY }
     }
   );
   const data = await response.json();
