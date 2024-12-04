@@ -11,6 +11,8 @@ permissions:
 env:
   BUCKET_NAME: "huynhlkevin.com"
   AWS_REGION: "us-west-1"
+  REST_API_ENDPOINT: ${{ vars.REST_API_ENDPOINT }}
+  REST_API_KEY: ${{ vars.REST_API_KEY }}
 
 jobs:
   deploy:
