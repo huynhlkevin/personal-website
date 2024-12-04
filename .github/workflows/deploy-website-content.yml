@@ -12,6 +12,8 @@ on:
       bucket_name:
         required: true
         type: string
+  push:
+    branches: [ "master" ]
 
 jobs:
   deploy_website_content:
