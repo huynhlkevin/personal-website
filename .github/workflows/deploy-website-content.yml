@@ -30,9 +30,11 @@ jobs:
         node-version: 22
         cache: 'npm'
 
-    - run: npm ci
+    - name: Install Node dependencies
+      run: npm ci
 
-    - run: npm run build
+    - name: Build website content
+      run: npm run build
       env:
         REST_API_ENDPOINT: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && secrets.PRODUCTION_REST_API_ENDPOINT || inputs.rest_api_endpoint }}
         REST_API_KEY: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && secrets.PRODUCTION_REST_API_KEY || inputs.rest_api_key }}
