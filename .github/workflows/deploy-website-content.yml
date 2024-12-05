@@ -12,10 +12,14 @@ on:
       bucket_name:
         required: false
         type: string
+      production:
+        required: true
+        type: boolean
 
 jobs:
   deploy_website_content:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.production && 'production' || 'development' }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
