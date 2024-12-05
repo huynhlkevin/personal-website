@@ -1,0 +1,19 @@
+name: Production
+
+on:
+  pull_request:
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploying to production environment
+        run: echo "Deploying to production environment"
+
+  deploy_website_content:
+    uses: ./.github/workflows/deploy-website-content.yml
+    needs: [production]
+    secrets: inherit
+    permissions:
+      id-token: write
