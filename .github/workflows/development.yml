@@ -19,3 +19,9 @@ jobs:
       rest_api_key: ${{ needs.deploy_development_infrastructure.outputs.rest_api_key }}
       bucket_name: ${{ needs.deploy_development_infrastructure.outputs.bucket_name }}
       production: false
+
+  run_tests_on_website:
+    uses: ./.github/workflows/run-tests-on-website.yml
+    needs: [deploy_development_infrastructure, deploy_website_content]
+    with:
+      website_url: ${{ needs.deploy_development_infrastructure.outputs.website_url }}
