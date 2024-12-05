@@ -1,0 +1,21 @@
+name: Development
+
+on:
+  pull_request:
+
+jobs:
+  deploy_development_infrastructure:
+    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/deploy_development_infrastructure.yml@main
+    secrets: inherit
+
+  deploy_website_content:
+    uses: ./.github/workflows/deploy-website-content.yml
+    needs: [deploy_development_infrastructure]
+    secrets: inherit
+    permissions:
+      id-token: write
+    with:
+      rest_api_endpoint: ${{ needs.deploy_development_infrastructure.outputs.rest_api_endpoint }}
+      rest_api_key: ${{ needs.deploy_development_infrastructure.outputs.rest_api_key }}
+      bucket_name: ${{ needs.deploy_development_infrastructure.outputs.bucket_name }}
+      production: false
