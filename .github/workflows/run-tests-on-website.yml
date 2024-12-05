@@ -1,0 +1,32 @@
+name: Run Tests on Website
+
+on:
+  workflow_call:
+    inputs:
+      website_url:
+        type: string
+        required: true
+
+jobs:
+  run_tests_on_website:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        repository: huynhlkevin/personal-website
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'npm'
+
+    - name: Install Node dependencies
+      run: npm ci
+
+    - name: Run tests
+      run: npx playwright test
+      env:
+        WEBSITE_URL: ${{ inputs.website_url }}
