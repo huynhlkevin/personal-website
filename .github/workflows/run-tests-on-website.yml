@@ -32,4 +32,4 @@ jobs:
     - name: Run tests
       run: npx playwright test
       env:
-        WEBSITE_URL: ${{ inputs.website_url }}
+        WEBSITE_URL: https://${{ inputs.website_url }}
