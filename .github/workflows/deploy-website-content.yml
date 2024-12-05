@@ -4,16 +4,14 @@ on:
   workflow_call:
     inputs:
       rest_api_endpoint:
-        required: true
+        required: false
         type: string
       rest_api_key:
-        required: true
+        required: false
         type: string
       bucket_name:
-        required: true
+        required: false
         type: string
-  push:
-    branches: [ "master" ]
 
 jobs:
   deploy_website_content:
@@ -36,19 +34,16 @@ jobs:
     - name: Build website content
       run: npm run build
       env:
-        REST_API_ENDPOINT: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && secrets.PRODUCTION_REST_API_ENDPOINT || inputs.rest_api_endpoint }}
-        REST_API_KEY: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && secrets.PRODUCTION_REST_API_KEY || inputs.rest_api_key }}
+        REST_API_ENDPOINT: ${{ secrets.REST_API_ENDPOINT || inputs.rest_api_endpoint }}
+        REST_API_KEY: ${{ secrets.REST_API_KEY || inputs.rest_api_key }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
-      env:
-        AWS_REGION: "us-west-1"
-        AWS_ROLE: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && secrets.PRODUCTION_AWS_ROLE || secrets.DEVELOPMENT_AWS_ROLE }}
       with:
-        role-to-assume: ${{ env.AWS_ROLE }}
-        aws-region: ${{ env.AWS_REGION }}
+        role-to-assume: ${{ secrets.AWS_ROLE }}
+        aws-region: "us-west-1"
   
     - name: Sync Files
       run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }} --delete
       env:
-        BUCKET_NAME: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && secrets.PRODUCTION_BUCKET_NAME || inputs.bucket_name }}
+        BUCKET_NAME: ${{ secrets.BUCKET_NAME || inputs.bucket_name }}
