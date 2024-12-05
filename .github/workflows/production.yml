@@ -13,6 +13,11 @@ jobs:
       - name: Deploying to production environment
         run: echo "Deploying to production environment"
 
+  destroy_development_infrastructure:
+    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/destroy_development_infrastructure.yml@main
+    needs: [production]
+    secrets: inherit
+
   deploy_website_content:
     uses: ./.github/workflows/deploy-website-content.yml
     needs: [production]
