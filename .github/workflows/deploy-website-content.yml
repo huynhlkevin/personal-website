@@ -12,6 +12,9 @@ on:
       bucket_name:
         required: false
         type: string
+      frontend_automation_aws_role:
+        required: false
+        type: string
       production:
         required: true
         type: boolean
@@ -44,7 +47,7 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: ${{ secrets.AWS_ROLE }}
+        role-to-assume: ${{ secrets.FRONTEND_AUTOMATION_AWS_ROLE || inputs.frontend_automation_aws_role }}
         aws-region: "us-west-1"
   
     - name: Sync Files
