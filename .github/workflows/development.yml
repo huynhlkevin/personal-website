@@ -2,9 +2,11 @@ name: Development
 
 on:
   pull_request:
+    types: [opened, closed, synchronize]
 
 jobs:
   deploy_development_infrastructure:
+    if: github.event.pull_request.merged == false
     uses: huynhlkevin/personal-website-infrastructure/.github/workflows/deploy-development-infrastructure.yml@main
     secrets: inherit
 
@@ -18,6 +20,7 @@ jobs:
       rest_api_endpoint: ${{ needs.deploy_development_infrastructure.outputs.rest_api_endpoint }}
       rest_api_key: ${{ needs.deploy_development_infrastructure.outputs.rest_api_key }}
       bucket_name: ${{ needs.deploy_development_infrastructure.outputs.bucket_name }}
+      frontend_automation_aws_role: ${{ needs.deploy_development_infrastructure.outputs.frontend_automation_aws_role }}
       production: false
 
   run_tests_on_website:
@@ -25,3 +28,8 @@ jobs:
     needs: [deploy_development_infrastructure, deploy_website_content]
     with:
       website_url: ${{ needs.deploy_development_infrastructure.outputs.website_url }}
+
+  destroy_development_infrastructure:
+    if: github.event.pull_request.merged == true
+    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/destroy-development-infrastructure.yml@main
+    secrets: inherit

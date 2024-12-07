@@ -2,14 +2,9 @@ name: Production
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
-  destroy_development_infrastructure:
-    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/destroy-development-infrastructure.yml@main
-    secrets: inherit
-
   deploy_website_content:
     uses: ./.github/workflows/deploy-website-content.yml
     secrets: inherit
@@ -17,3 +12,9 @@ jobs:
       id-token: write
     with:
       production: true
+
+  run_tests_on_website:
+    uses: ./.github/workflows/run-tests-on-website.yml
+    needs: [deploy_website_content]
+    with:
+      website_url: www.huynhlkevin.com    
