@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import BlogPostPreview from "../components/BlogPostPreview.astro";
+
+const posts = await getCollection("blog");
+---
+
+<Layout pageName="Blog">
+  <section>
+    {
+      posts.sort((a, b) => b.id.localeCompare(a.id)).map(async (entry) => {
+        const { Content } = await entry.render();
+        return (
+          <BlogPostPreview title={entry.data.title} slug={entry.slug}>
+            <Content></Content>
+          </BlogPostPreview>
+        )
+      })
+    }
+  </section>
+</Layout>
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+</style>
