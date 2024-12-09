@@ -4,7 +4,7 @@ date: December 7, 2024
 description: I finally finished building a personal website...
 ---
 ### Introduction
-For a long time, I've wanted to carve out a space for myself on the world wide web. I've made a few attempts before, but dropped them mostly because of a loss of interest. This time, I was inspired by the [Cloud Resume Challenge](https://cloudresumechallenge.dev/) to not only create the website, but to learn new things like infrastructure as code and build automation. As it turned out, having these new things to learn was what kept me motivated and eager to continue working on this project.
+For a long time, I've wanted to carve out a space for myself on the internet. I've made a few attempts before, but dropped them mostly because of a loss of interest. This time, I was inspired by the [Cloud Resume Challenge](https://cloudresumechallenge.dev/) to not only create the website, but to learn new things like infrastructure as code and build automation. As it turned out, having these new things to learn was what kept me motivated and eager to continue working on this project.
 
 ### Frontend
 
