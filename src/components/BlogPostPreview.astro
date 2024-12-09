@@ -2,14 +2,21 @@
 interface Props {
   title: string;
   slug: string;
+  description: string;
+  date: string;
 }
 
-const { title, slug } = Astro.props;
+const { title, slug, description, date } = Astro.props;
 ---
 
 <section>
   <a href={`/blog/${slug}`}><h2>{title}</h2></a>
-  <slot></slot>
+  <div>{date}</div>
+  <div>{description}</div>
 </section>
 <style>
+  section {
+    display: flex;
+    flex-direction: column;
+  }
 </style>
