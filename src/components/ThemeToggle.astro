@@ -37,32 +37,11 @@
   }
 </style>
 <script>
-  const dark = "dark";
-  const light = "light";
-  const theme = "theme";
-  const selectedTheme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem(theme)) {
-      return localStorage.getItem(theme) ?? light;
-    }
-
-    return window.matchMedia(`(prefers-color-scheme: ${dark})`).matches
-      ? dark
-      : light;
-  })();
-
-  if (selectedTheme === light) {
-    document.documentElement.classList.remove(dark);
-  } else {
-    document.documentElement.classList.add(dark);
-  }
-
-  window.localStorage.setItem(theme, selectedTheme);
-
   const handleToggleClick = () => {
-    document.documentElement.classList.toggle(dark);
+    document.documentElement.classList.toggle("dark");
     localStorage.setItem(
-      theme,
-      document.documentElement.classList.contains(dark) ? dark : light,
+      "theme",
+      document.documentElement.classList.contains("dark") ? "dark" : "light",
     );
   };
 

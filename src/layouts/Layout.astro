@@ -18,6 +18,25 @@ const { pageName } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Kevin Huynh - {pageName}</title>
+    <script is:inline>
+      const selectedTheme = (() => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme") ?? "light";
+        }
+
+        return window.matchMedia(`(prefers-color-scheme: dark)`).matches
+          ? "dark"
+          : "light";
+      })();
+
+      if (selectedTheme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+
+      window.localStorage.setItem("theme", selectedTheme);
+    </script>
   </head>
   <body>
     <Header />
