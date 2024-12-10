@@ -49,28 +49,20 @@
       : light;
   })();
 
-  const getElements = () => [document.documentElement, document.body];
-
   if (selectedTheme === light) {
-    for (const element of getElements()) {
-      element.classList.remove(dark);
-    }
+    document.documentElement.classList.remove(dark);
   } else {
-    for (const element of getElements()) {
-      element.classList.add(dark);
-    }
+    document.documentElement.classList.add(dark);
   }
 
   window.localStorage.setItem(theme, selectedTheme);
 
   const handleToggleClick = () => {
-    for (const element of getElements()) {
-      element.classList.toggle(dark);
-      localStorage.setItem(
-        theme,
-        element.classList.contains(dark) ? dark : light,
-      );
-    }
+    document.documentElement.classList.toggle(dark);
+    localStorage.setItem(
+      theme,
+      document.documentElement.classList.contains(dark) ? dark : light,
+    );
   };
 
   document
