@@ -28,12 +28,27 @@ const { pageName } = Astro.props;
   </body>
 </html>
 <style is:global>
-  html {
+  :root {
     font-family: system-ui, sans-serif;
   }
-  html.dark {
-    background: #13151a;
+  
+  .dark {
+    background: #282a36;
+    color: #f8f8f2;
   }
+
+  .dark a:link {
+    color: skyblue;
+  }
+
+  .dark a:visited {
+    color: thistle;
+  }
+
+  .dark a:active {
+    color: red;
+  }
+
   code {
     font-family:
       Menlo,
@@ -54,9 +69,6 @@ const { pageName } = Astro.props;
     width: 800px;
     max-width: calc(100% - 2rem);
     line-height: 1.6;
-  }
-  body.dark {
-    color: white;
   }
   .markdownImageWrapper {
     overflow-x: auto;
