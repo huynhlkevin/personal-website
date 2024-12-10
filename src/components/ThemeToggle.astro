@@ -22,17 +22,18 @@
     background: none;
   }
   .sun {
-    fill: black;
+    fill: transparent;
   }
   .moon {
-    fill: transparent;
+    fill: black;
   }
 
   :global(.dark) .sun {
-    fill: transparent;
-  }
-  :global(.dark) .moon {
     fill: white;
+  }
+
+  :global(.dark) .moon {
+    fill: transparent;
   }
 </style>
 <script>
