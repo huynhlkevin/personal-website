@@ -3,6 +3,8 @@ title: Building a Personal Website
 date: December 7, 2024
 description: I finally finished building a personal website...
 ---
+import { Image } from "astro:assets";
+
 ### Introduction
 For a long time, I've wanted to carve out a space for myself on the internet. I've made a few attempts before, but dropped them mostly because of a loss of interest. This time, I was inspired by the [Cloud Resume Challenge](https://cloudresumechallenge.dev/) to not only create the website, but to learn new things like infrastructure as code and build automation. As it turned out, having these new things to learn was what kept me motivated and eager to continue working on this project.
 
@@ -10,7 +12,7 @@ For a long time, I've wanted to carve out a space for myself on the internet. I'
 
 I chose [Astro](https://astro.build/) to build this website because it was very convenient to install and setup using npm. Since I didn't have issues creating the website and had no performance issues, I didn't have any reason to switch to another framework.
 
-![Frontend](../../images/blog/1/frontend.webp)
+<div class="markdownImageWrapper">![Frontend](../../images/blog/1/frontend.webp)</div>
 
 - [Amazon CloudFront](https://aws.amazon.com/cloudfront/) for distributing content
 - [Amazon S3](https://aws.amazon.com/s3/) for storing content
@@ -22,7 +24,7 @@ Frontend code can be found here: https://github.com/huynhlkevin/personal-website
 
 The only dynamic part of the website is the visitor counter, updated every time a user visits the website.
 
-![Backend](../../images/blog/1/backend.webp)
+<div class="markdownImageWrapper">![Backend](../../images/blog/1/backend.webp)</div>
 
 - [Amazon API Gateway](https://aws.amazon.com/api-gateway/) for triggering the Lambda function
 - [Amazon Lambda](https://aws.amazon.com/lambda/) for reading and editing the visitor count
@@ -36,7 +38,7 @@ The combination of infrastructure as code and build automation robbed me of my a
 
 #### Automation
 
-![Infrastructure Automation Workflow](../../images/blog/1/infrastructure-automation.webp)
+<div class="markdownImageWrapper">![Infrastructure Automation](../../images/blog/1/infrastructure-automation.webp)</div>
 
 1. Developer does something (e.g. opens pull request) on [GitHub](https://github.com/), triggering GitHub Actions
 1. GitHub Actions sends [Terraform](https://www.terraform.io/) commands to Terraform Cloud
@@ -44,7 +46,7 @@ The combination of infrastructure as code and build automation robbed me of my a
 
 #### GitHub Workflow
 
-![Build Automation Workflow](../../images/blog/1/github-workflow.webp)
+<div class="markdownImageWrapper">![GitHub Workflow](../../images/blog/1/github-workflow.webp)</div>
 
 Note:
 - Each pull request deploys its own development environment
@@ -52,7 +54,7 @@ Note:
 
 When I open a pull request or update code on a pull request:
 
-![Pull Request Open/Edit Workflow](../../images/blog/1/pull-request-open.png)
+<div class="markdownImageWrapper">![Pull Request Open/Edit Workflow](../../images/blog/1/pull-request-open.png)</div>
 
 1. Deploy development infrastructure
 1. Deploy website content to development environment
@@ -60,11 +62,11 @@ When I open a pull request or update code on a pull request:
 
 When I merge a pull request:
 
-![Pull Request Closed Workflow](../../images/blog/1/pull-request-closed.png)
+<div class="markdownImageWrapper">![Pull Request Closed Workflow](../../images/blog/1/pull-request-closed.png)</div>
 
 1. Destroy development infrastructure
 
-![Push to Default Branch](../../images/blog/1/push-to-default-branch.png)
+<div class="markdownImageWrapper">![Push to Default Branch](../../images/blog/1/push-to-default-branch.png)</div>
 
 1. Deploy production infrastructure
 1. Deploy website content to production environment
