@@ -10,7 +10,7 @@ For a long time, I've wanted to carve out a space for myself on the internet. I'
 
 I chose [Astro](https://astro.build/) to build this website because it was very convenient to install and setup using npm. Since I didn't have issues creating the website and had no performance issues, I didn't have any reason to switch to another framework.
 
-![Frontend](../../images/blog/1/frontend-dark.webp)
+![Frontend](../../images/blog/1/frontend.webp)
 
 - [Amazon CloudFront](https://aws.amazon.com/cloudfront/) for distributing content
 - [Amazon S3](https://aws.amazon.com/s3/) for storing content
@@ -22,7 +22,7 @@ Frontend code can be found here: https://github.com/huynhlkevin/personal-website
 
 The only dynamic part of the website is the visitor counter, updated every time a user visits the website.
 
-![Backend](../../images/blog/1/backend-dark.webp)
+![Backend](../../images/blog/1/backend.webp)
 
 - [Amazon API Gateway](https://aws.amazon.com/api-gateway/) for triggering the Lambda function
 - [Amazon Lambda](https://aws.amazon.com/lambda/) for reading and editing the visitor count
@@ -36,7 +36,7 @@ The combination of infrastructure as code and build automation robbed me of my a
 
 #### Automation
 
-![Infrastructure Automation Workflow](../../images/blog/1/infrastructure-automation-workflow-dark.webp)
+![Infrastructure Automation Workflow](../../images/blog/1/infrastructure-automation.webp)
 
 1. Developer does something (e.g. opens pull request) on [GitHub](https://github.com/), triggering GitHub Actions
 1. GitHub Actions sends [Terraform](https://www.terraform.io/) commands to Terraform Cloud
@@ -44,7 +44,7 @@ The combination of infrastructure as code and build automation robbed me of my a
 
 #### GitHub Workflow
 
-![Build Automation Workflow](../../images/blog/1/build-automation-workflow-dark.webp)
+![Build Automation Workflow](../../images/blog/1/github-workflow.webp)
 
 Note:
 - Each pull request deploys its own development environment
