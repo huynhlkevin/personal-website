@@ -1,20 +1,29 @@
 ---
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header>
-  <h1>Kevin Huynh</h1>
+  <div>Kevin Huynh</div>
   <nav>
-    <a href=".">Home</a>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
   </nav>
+  <ThemeToggle />
 </header>
 <style>
   header {
     display: flex;
+    gap: 1em;
+  }
+  div {
+    font-size: xx-large;
+    font-weight: bold;
   }
   nav {
     display: flex;
     align-items: center;
     justify-content: right;
     flex-grow: 1;
+    gap: 1em;
   }
 </style>

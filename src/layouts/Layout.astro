@@ -18,31 +18,59 @@ const { pageName } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Kevin Huynh - {pageName}</title>
+    <script is:inline>
+      const selectedTheme = (() => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme") ?? "light";
+        }
+
+        return window.matchMedia(`(prefers-color-scheme: dark)`).matches
+          ? "dark"
+          : "light";
+      })();
+
+      if (selectedTheme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+
+      window.localStorage.setItem("theme", selectedTheme);
+    </script>
   </head>
   <body>
-    <Header></Header>
+    <Header />
     <main>
-      <slot></slot>
+      <slot />
     </main>
-    <Footer></Footer>
+    <Footer />
   </body>
 </html>
 <style is:global>
   :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
-  }
-  html {
     font-family: system-ui, sans-serif;
-    background: #13151a;
+    transition: all 0.5s ease-in-out;
+    background-color: white;
+    color: black;
   }
+  
+  .dark {
+    background-color: #282a36;
+    color: #f8f8f2;
+  }
+
+  .dark a:link {
+    color: #87ceeb;
+  }
+
+  .dark a:visited {
+    color: thistle;
+  }
+
+  .dark a:active {
+    color: red;
+  }
+
   code {
     font-family:
       Menlo,
@@ -53,7 +81,7 @@ const { pageName } = Astro.props;
       Bitstream Vera Sans Mono,
       Courier New,
       monospace;
-  }  
+  }
   body {
     display: flex;
     flex-direction: column;
@@ -62,7 +90,9 @@ const { pageName } = Astro.props;
     padding: 1rem;
     width: 800px;
     max-width: calc(100% - 2rem);
-    color: white;
     line-height: 1.6;
+  }
+  .markdownImageWrapper {
+    overflow-x: auto;
   }
 </style>
