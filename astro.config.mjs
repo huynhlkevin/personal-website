@@ -5,9 +5,6 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  build: {
-    format: "file"
-  },
   env: {
     schema: {
       REST_API_ENDPOINT: envField.string({ context: "client", access: "public", default: "" }),
