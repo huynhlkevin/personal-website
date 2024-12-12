@@ -23,7 +23,7 @@
     });
     const data = await response.json();
     document.getElementById("visitorCounter")!.textContent =
-      `Visitor #${data.data}`;
+      `Visitors: ${data.data}`;
   };
 
   if (
