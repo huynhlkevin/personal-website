@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <footer>
@@ -13,15 +14,23 @@
   }
 </style>
 <script>
-import { REST_API_ENDPOINT, REST_API_KEY } from "astro:env/client";
+  import { REST_API_ENDPOINT, REST_API_KEY } from "astro:env/client";
 
-  const response = await fetch(
-    REST_API_ENDPOINT,
-    { 
+  if (
+    typeof localStorage === "undefined" ||
+    localStorage.getItem("visitor") === null
+  ) {
+    const response = await fetch(REST_API_ENDPOINT, {
       method: "POST",
-      headers: { "x-api-key": REST_API_KEY }
-    }
-  );
-  const data = await response.json();
-  document.getElementById("visitorCounter")!.textContent = `Visitor #${data.data}`;
+      headers: { "x-api-key": REST_API_KEY },
+    });
+    const data = await response.json();
+    document.getElementById("visitorCounter")!.textContent =
+      `Visitor #${data.data}`;
+
+    localStorage.setItem("visitor", `${data.data}`);
+  } else {
+    document.getElementById("visitorCounter")!.textContent =
+      `Visitor #${localStorage.getItem("visitor")}`;
+  }
 </script>
