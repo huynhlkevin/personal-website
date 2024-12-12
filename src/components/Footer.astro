@@ -18,7 +18,7 @@
 
   if (
     typeof localStorage === "undefined" ||
-    localStorage.getItem("visited") === null
+    localStorage.getItem("visitor") === null
   ) {
     const response = await fetch(REST_API_ENDPOINT, {
       method: "POST",
@@ -28,6 +28,9 @@
     document.getElementById("visitorCounter")!.textContent =
       `Visitor #${data.data}`;
 
-    localStorage.setItem("visited", "true");
+    localStorage.setItem("visitor", `${data.data}`);
+  } else {
+    document.getElementById("visitorCounter")!.textContent =
+      `Visitor #${localStorage.getItem("visitor")}`;
   }
 </script>
