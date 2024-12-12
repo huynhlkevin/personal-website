@@ -4,7 +4,7 @@ test("check visitor counter increments when new visitor", async ({ page }) => {
   await page.goto(process.env.WEBSITE_URL!);
 
   const textContentBeforeReload = await page.getByText(/Visitor #\d+/).textContent();
-  await page.evaluate(() => localStorage.removeItem("visitor"));
+  await page.evaluate(() => localStorage.removeItem("visited"));
   const visitorCountBeforeReload = Number(textContentBeforeReload?.split("#")[1]);
 
   // Reload the page to trigger the visitor counter increment
