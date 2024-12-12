@@ -16,21 +16,23 @@
 <script>
   import { REST_API_ENDPOINT, REST_API_KEY } from "astro:env/client";
 
-  if (
-    typeof localStorage === "undefined" ||
-    localStorage.getItem("visitor") === null
-  ) {
+  const setVisitorCounter = async (httpMethod: string) => {
     const response = await fetch(REST_API_ENDPOINT, {
-      method: "POST",
+      method: httpMethod,
       headers: { "x-api-key": REST_API_KEY },
     });
     const data = await response.json();
     document.getElementById("visitorCounter")!.textContent =
-      `Visitor #${data.data}`;
+      `Visitors: ${data.data}`;
+  };
 
-    localStorage.setItem("visitor", `${data.data}`);
+  if (
+    typeof localStorage === "undefined" ||
+    localStorage.getItem("visited") === null
+  ) {
+    setVisitorCounter("POST");
+    localStorage.setItem("visited", "true");
   } else {
-    document.getElementById("visitorCounter")!.textContent =
-      `Visitor #${localStorage.getItem("visitor")}`;
+    setVisitorCounter("GET");
   }
 </script>
