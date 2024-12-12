@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("check visitor counter increment", async ({ page }) => {
   await page.goto(process.env.WEBSITE_URL!);
+  await page.evaluate(() => localStorage.removeItem("visited"));
 
   const textContentBeforeReload = await page.getByText(/Visitor #\d+/).textContent();
   const visitorCountBeforeReload = Number(textContentBeforeReload?.split("#")[1]);
