@@ -40,9 +40,9 @@ The combination of infrastructure as code and build automation robbed me of my a
 
 <div class="markdownImageWrapper">![Infrastructure Automation](../../images/blog/1/infrastructure-automation.webp)</div>
 
-1. Developer does something (e.g. opens pull request) on [GitHub](https://github.com/), triggering GitHub Actions
-1. GitHub Actions sends [Terraform](https://www.terraform.io/) commands to Terraform Cloud
-1. Terraform Cloud creates, updates, or destroys resources on AWS
+1. Developer does something (e.g. opens pull request) on [GitHub](https://github.com/), triggering GitHub Actions.
+1. GitHub Actions sends [Terraform](https://www.terraform.io/) commands to [HCP Terraform](https://app.terraform.io/).
+1. HCP Terraform creates, updates, or destroys resources on AWS. It also stores the infrastructure state.
 
 #### GitHub Workflow
 
