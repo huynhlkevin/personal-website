@@ -43,6 +43,7 @@ The combination of infrastructure as code and build automation robbed me of my a
 1. Developer does something (e.g. opens pull request) on [GitHub](https://github.com/), triggering GitHub Actions.
 1. GitHub Actions sends [Terraform](https://www.terraform.io/) commands to [HCP Terraform](https://app.terraform.io/).
 1. HCP Terraform creates, updates, or destroys resources on AWS. It also stores the infrastructure state.
+1. GitHub Actions sends website content files to AWS S3.
 
 #### GitHub Workflow
 
