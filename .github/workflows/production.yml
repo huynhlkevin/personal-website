@@ -5,6 +5,10 @@ on:
     branches: [master]
 
 jobs:
+  deploy_production_infrastructure:
+    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/deploy-production-infrastructure.yml@main
+    secrets: inherit
+
   deploy_website_content:
     uses: ./.github/workflows/deploy-website-content.yml
     secrets: inherit
