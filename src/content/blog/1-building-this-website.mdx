@@ -16,13 +16,13 @@ I chose [Astro](https://astro.build/) to build this website because it was very 
 
 - [Amazon CloudFront](https://aws.amazon.com/cloudfront/) for distributing content
 - [Amazon S3](https://aws.amazon.com/s3/) for storing content
-- [Cloudflare](https://www.cloudflare.com/) for custom domain and routing
+- [Cloudflare](https://www.cloudflare.com/) for custom domain and routing (production environment only)
 
 Frontend code can be found here: https://github.com/huynhlkevin/personal-website
 
 ### Backend
 
-The only dynamic part of the website is the visitor counter, updated every time a user visits the website.
+The only dynamic part of the website is the visitor counter, updated every time a new user visits the website.
 
 <div class="markdownImageWrapper">![Backend](../../images/blog/1/backend.webp)</div>
 
@@ -38,11 +38,12 @@ The combination of infrastructure as code and build automation robbed me of my a
 
 #### Automation
 
-<div class="markdownImageWrapper">![Infrastructure Automation](../../images/blog/1/infrastructure-automation.webp)</div>
+<div class="markdownImageWrapper">![Infrastructure Automation](../../images/blog/1/automation.webp)</div>
 
-1. Developer does something (e.g. opens pull request) on [GitHub](https://github.com/), triggering GitHub Actions
-1. GitHub Actions sends [Terraform](https://www.terraform.io/) commands to Terraform Cloud
-1. Terraform Cloud creates, updates, or destroys resources on AWS
+1. Developer does something (e.g. opens pull request) on [GitHub](https://github.com/), triggering GitHub Actions.
+1. GitHub Actions sends [Terraform](https://www.terraform.io/) commands to [HCP Terraform](https://app.terraform.io/).
+1. HCP Terraform creates, updates, or destroys infrastructure resources on AWS.
+    - If infrastructure is created or updated, then GitHub Actions will also upload new website content files to AWS S3.
 
 #### GitHub Workflow
 
@@ -80,8 +81,6 @@ Workflows can be found here:
 
 https://github.com/huynhlkevin/personal-website/tree/master/.github/workflows
 https://github.com/huynhlkevin/personal-website-infrastructure/tree/main/.github/workflows
-
-Note: The production workflow for the frontend repository does not include deployment of production infrastructure. I excluded it to save some time because I don't expect the production infrastructure to be destroyed regularly.
 
 ### Final Words
 
