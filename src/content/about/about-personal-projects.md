@@ -1,6 +1,6 @@
 ---
 title: "Personal Projects"
-sortOrder: 2
+sortOrder: 1
 ---
 ### [Personal Website](./blog/1-building-this-website)
 A personal website I created to learn about networking, web technologies, cloud services, infrastructure as code, and build automation. Inspired by the [Cloud Resume Challenge](https://cloudresumechallenge.dev/).
