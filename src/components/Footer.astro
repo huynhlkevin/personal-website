@@ -3,14 +3,23 @@
 ---
 
 <footer>
-  <div>© 2024 Kevin Huynh</div>
-  <div id="visitorCounter"></div>
+  <div class="copyright">
+    <div>© 2024 Kevin Huynh</div>
+    <div id="visitorCounter"></div>
+  </div>
+  <div>
+    <a href="https://github.com/huynhlkevin">GitHub</a>
+  </div>
 </footer>
 <style>
   footer {
     display: flex;
+    gap: 1em;
+  }
+  .copyright {
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    flex-grow: 1;
   }
 </style>
 <script>
