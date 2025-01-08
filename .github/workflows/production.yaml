@@ -2,7 +2,8 @@ name: Production
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
   deploy_production_infrastructure:
