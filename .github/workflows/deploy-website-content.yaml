@@ -50,7 +50,11 @@ jobs:
         role-to-assume: ${{ secrets.FRONTEND_AUTOMATION_AWS_ROLE || inputs.frontend_automation_aws_role }}
         aws-region: "us-west-1"
   
-    - name: Sync Files
+    - name: Sync files
       run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }} --delete
       env:
         BUCKET_NAME: ${{ secrets.BUCKET_NAME || inputs.bucket_name }}
+
+    - name: Invalidate CloudFront cache
+      if: inputs.production == true
+      run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION }} --paths "/*"
