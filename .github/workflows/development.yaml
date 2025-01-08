@@ -11,7 +11,7 @@ jobs:
     secrets: inherit
 
   deploy_website_content:
-    uses: ./.github/workflows/deploy-website-content.yml
+    uses: ./.github/workflows/deploy-website-content.yaml
     needs: [deploy_development_infrastructure]
     secrets: inherit
     permissions:
