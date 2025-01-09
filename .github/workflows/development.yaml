@@ -2,7 +2,10 @@ name: Development
 
 on:
   pull_request:
-    types: [opened, closed, synchronize]
+    types:
+      - opened
+      - closed
+      - synchronize
 
 jobs:
   deploy-development-infrastructure:

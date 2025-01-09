@@ -3,16 +3,16 @@ name: Deploy Website Content
 on:
   workflow_call:
     inputs:
-      rest_api_endpoint:
+      rest-api-endpoint:
         required: false
         type: string
-      rest_api_key:
+      rest-api-key:
         required: false
         type: string
-      bucket_name:
+      bucket-name:
         required: false
         type: string
-      frontend_automation_aws_role:
+      frontend-automation-aws-role:
         required: false
         type: string
       production:
@@ -20,7 +20,7 @@ on:
         type: boolean
 
 jobs:
-  deploy_website_content:
+  deploy-website-content:
     runs-on: ubuntu-latest
     environment: ${{ inputs.production && 'production' || 'development' }}
     steps:
@@ -41,19 +41,19 @@ jobs:
     - name: Build website content
       run: npm run build
       env:
-        REST_API_ENDPOINT: ${{ secrets.REST_API_ENDPOINT || inputs.rest_api_endpoint }}
-        REST_API_KEY: ${{ secrets.REST_API_KEY || inputs.rest_api_key }}
+        REST_API_ENDPOINT: ${{ secrets.REST_API_ENDPOINT || inputs.rest-api-endpoint }}
+        REST_API_KEY: ${{ secrets.REST_API_KEY || inputs.rest-api-key }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: ${{ secrets.FRONTEND_AUTOMATION_AWS_ROLE || inputs.frontend_automation_aws_role }}
+        role-to-assume: ${{ secrets.FRONTEND_AUTOMATION_AWS_ROLE || inputs.frontend-automation-aws-role }}
         aws-region: "us-west-1"
   
     - name: Sync files
       run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }} --delete
       env:
-        BUCKET_NAME: ${{ secrets.BUCKET_NAME || inputs.bucket_name }}
+        BUCKET_NAME: ${{ secrets.BUCKET_NAME || inputs.bucket-name }}
 
     - name: Invalidate CloudFront cache
       if: inputs.production == true

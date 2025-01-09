@@ -3,7 +3,7 @@ name: Run Tests on Website
 on:
   workflow_call:
     inputs:
-      website_url:
+      website-url:
         type: string
         required: true
 
@@ -31,4 +31,4 @@ jobs:
     - name: Run tests
       run: npx playwright test
       env:
-        WEBSITE_URL: https://${{ inputs.website_url }}
+        WEBSITE_URL: https://${{ inputs.website-url }}
