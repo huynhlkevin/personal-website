@@ -2,24 +2,25 @@ name: Production
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
-  deploy_production_infrastructure:
+  deploy-production-infrastructure:
     uses: huynhlkevin/personal-website-infrastructure/.github/workflows/deploy-production-infrastructure.yml@main
     secrets: inherit
 
-  deploy_website_content:
-    uses: ./.github/workflows/deploy-website-content.yml
-    needs: [deploy_production_infrastructure]
+  deploy-website-content:
+    uses: ./.github/workflows/deploy-website-content.yaml
+    needs: [deploy-production-infrastructure]
     secrets: inherit
     permissions:
       id-token: write
     with:
       production: true
 
-  run_tests_on_website:
+  run-tests-on-website:
     uses: ./.github/workflows/run-tests-on-website.yml
-    needs: [deploy_production_infrastructure, deploy_website_content]
+    needs: [deploy-production-infrastructure, deploy-website-content]
     with:
-      website_url: www.huynhlkevin.com    
+      website-url: www.huynhlkevin.com
