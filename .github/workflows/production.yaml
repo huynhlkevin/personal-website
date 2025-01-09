@@ -20,7 +20,7 @@ jobs:
       production: true
 
   run-tests-on-website:
-    uses: ./.github/workflows/run-tests-on-website.yml
+    uses: ./.github/workflows/run-tests-on-website.yaml
     needs: [deploy-production-infrastructure, deploy-website-content]
     with:
       website-url: www.huynhlkevin.com
