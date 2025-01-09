@@ -8,7 +8,7 @@ on:
         required: true
 
 jobs:
-  run_tests_on_website:
+  run-tests-on-website:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
