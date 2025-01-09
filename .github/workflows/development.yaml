@@ -15,7 +15,7 @@ jobs:
 
   deploy-website-content:
     uses: ./.github/workflows/deploy-website-content.yaml
-    needs: deploy-development-infrastructure
+    needs: [deploy-development-infrastructure]
     secrets: inherit
     permissions:
       id-token: write
@@ -28,7 +28,7 @@ jobs:
 
   run-tests-on-website:
     uses: ./.github/workflows/run-tests-on-website.yaml
-    needs: deploy-website-content
+    needs: [deploy-development-infrastructure, deploy-website-content]
     with:
       website-url: ${{ needs.deploy-development-infrastructure.outputs.website_url }}
 
