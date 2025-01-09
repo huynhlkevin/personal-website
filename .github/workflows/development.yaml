@@ -10,7 +10,7 @@ on:
 jobs:
   deploy-development-infrastructure:
     if: github.event.pull_request.merged == false
-    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/deploy-development-infrastructure.yml@main
+    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/deploy_development_infrastructure.yml@main
     secrets: inherit
 
   deploy-website-content:
@@ -27,12 +27,12 @@ jobs:
       production: false
 
   run-tests-on-website:
-    uses: ./.github/workflows/run-tests-on-website.yml
+    uses: ./.github/workflows/run-tests-on-website.yaml
     needs: deploy-website-content
     with:
       website-url: ${{ needs.deploy-development-infrastructure.outputs.website-url }}
 
   destroy-development-infrastructure:
     if: github.event.pull_request.merged == true
-    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/destroy-development-infrastructure.yml@main
+    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/destroy_development_infrastructure.yml@main
     secrets: inherit
