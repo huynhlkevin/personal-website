@@ -23,4 +23,4 @@ jobs:
     uses: ./.github/workflows/run-tests-on-website.yml
     needs: deploy-website-content
     with:
-      website_url: www.huynhlkevin.com
+      website-url: www.huynhlkevin.com

@@ -20,17 +20,17 @@ jobs:
     permissions:
       id-token: write
     with:
-      rest_api_endpoint: ${{ needs.deploy-development-infrastructure.outputs.rest_api_endpoint }}
-      rest_api_key: ${{ needs.deploy-development-infrastructure.outputs.rest_api_key }}
-      bucket_name: ${{ needs.deploy-development-infrastructure.outputs.bucket_name }}
-      frontend_automation_aws_role: ${{ needs.deploy-development-infrastructure.outputs.frontend_automation_aws_role }}
+      rest-api-endpoint: ${{ needs.deploy-development-infrastructure.outputs.rest-api-endpoint }}
+      rest-api-key: ${{ needs.deploy-development-infrastructure.outputs.rest-api-key }}
+      bucket-name: ${{ needs.deploy-development-infrastructure.outputs.bucket-name }}
+      frontend-automation-aws-role: ${{ needs.deploy-development-infrastructure.outputs.frontend-automation-aws-role }}
       production: false
 
   run-tests-on-website:
     uses: ./.github/workflows/run-tests-on-website.yml
     needs: deploy-website-content
     with:
-      website_url: ${{ needs.deploy-development-infrastructure.outputs.website_url }}
+      website-url: ${{ needs.deploy-development-infrastructure.outputs.website-url }}
 
   destroy-development-infrastructure:
     if: github.event.pull_request.merged == true
