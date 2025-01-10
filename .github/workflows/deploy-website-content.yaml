@@ -41,20 +41,20 @@ jobs:
     - name: Build website content
       run: npm run build
       env:
-        REST_API_ENDPOINT: ${{ secrets.REST_API_ENDPOINT || inputs.rest-api-endpoint }}
-        REST_API_KEY: ${{ secrets.REST_API_KEY || inputs.rest-api-key }}
+        REST_API_ENDPOINT: ${{ vars.REST_API_ENDPOINT || inputs.rest-api-endpoint }}
+        REST_API_KEY: ${{ vars.REST_API_KEY || inputs.rest-api-key }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: ${{ secrets.FRONTEND_AUTOMATION_AWS_ROLE || inputs.frontend-automation-aws-role }}
+        role-to-assume: ${{ vars.FRONTEND_AUTOMATION_AWS_ROLE || inputs.frontend-automation-aws-role }}
         aws-region: "us-west-1"
   
     - name: Sync files
       run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }} --delete
       env:
-        BUCKET_NAME: ${{ secrets.BUCKET_NAME || inputs.bucket-name }}
+        BUCKET_NAME: ${{ vars.BUCKET_NAME || inputs.bucket-name }}
 
     - name: Invalidate CloudFront cache
       if: inputs.production == true
-      run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION }} --paths "/*"
+      run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION }} --paths "/*"
