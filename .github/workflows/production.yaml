@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy-production-infrastructure:
-    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/deploy-production-infrastructure.yml@main
+    uses: huynhlkevin/personal-website-infrastructure/.github/workflows/deploy-production-infrastructure.yaml@main
     secrets: inherit
 
   deploy-website-content:
