@@ -30,7 +30,7 @@ jobs:
     uses: ./.github/workflows/run-tests-on-website.yaml
     needs: [deploy-development-infrastructure, deploy-website-content]
     with:
-      website-url: ${{ needs.deploy-development-infrastructure.outputs.website_url }}
+      website-url: ${{ needs.deploy-development-infrastructure.outputs.website-url }}
 
   destroy-development-infrastructure:
     if: github.event.pull_request.merged == true
