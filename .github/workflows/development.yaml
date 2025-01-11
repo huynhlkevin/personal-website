@@ -20,10 +20,10 @@ jobs:
     permissions:
       id-token: write
     with:
-      rest-api-endpoint: ${{ needs.deploy-development-infrastructure.outputs.rest_api_endpoint }}
-      rest-api-key: ${{ needs.deploy-development-infrastructure.outputs.rest_api_key }}
-      bucket-name: ${{ needs.deploy-development-infrastructure.outputs.bucket_name }}
-      frontend-automation-aws-role: ${{ needs.deploy-development-infrastructure.outputs.frontend_automation_aws_role }}
+      rest-api-endpoint: ${{ needs.deploy-development-infrastructure.outputs.rest-api-endpoint }}
+      rest-api-key: ${{ needs.deploy-development-infrastructure.outputs.rest-api-key }}
+      bucket-name: ${{ needs.deploy-development-infrastructure.outputs.bucket-name }}
+      frontend-automation-aws-role: ${{ needs.deploy-development-infrastructure.outputs.frontend-automation-aws-role }}
       production: false
 
   run-tests-on-website:
